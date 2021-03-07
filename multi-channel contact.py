@@ -1,26 +1,12 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[60]:
-
-
 # Import dependencies
 import json
 import pandas as pd
-
-
-# In[3]:
-
 
 # Read json dataset
 with open('contacts.json') as f:
     data = json.loads(f.read())
 
 df = pd.DataFrame(data)
-
-
-# In[130]:
-
 
 # Search and create a result dataframe process
 result = pd.DataFrame({}, columns = ['ticket_id', 'ticket_trace/contact'])
@@ -63,14 +49,7 @@ for index, row in df.iterrows():
         }, index = ids)
 
         result = pd.concat([result, df_temp])
+        
         result.sort_index().to_csv(r'result.csv')
-        pd.DataFrame({iters}).to_csv(r'iters.csv')
         
         df.drop(result.index.to_list())
-
-
-# In[ ]:
-
-
-iters
-
